@@ -176,10 +176,10 @@ def is_active_feature(feature, redirect_to=None, redirect=None):
           url = url_for(redirect)
 
         if url:
-          log.debug('Feature {feature} is off, redirecting to {url}'.format(feature=feature, url=url))
+          log.info('Feature {feature} is off, redirecting to {url}'.format(feature=feature, url=url))
           return _redirect(url, code=302)
         else:
-          log.debug('Feature {feature} is off, aborting request'.format(feature=feature))
+          log.info('Feature {feature} is off, aborting request'.format(feature=feature))
           abort(404)
 
       return func(*args, **kwargs)
