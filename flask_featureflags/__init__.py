@@ -12,6 +12,9 @@ distributed under the License is distributed on an "AS IS" BASIS,
 WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
+
+masosi-5
+
 """
 
 from functools import wraps
@@ -65,7 +68,7 @@ def AppConfigFlagHandler(feature=None):
       'unfinished_feature' : True,
     }
 
-   """
+  """
   if not current_app:
     log.warn("Got a request to check for {feature} but we're outside the request context. Returning False".format(feature=feature))
     return False
@@ -93,11 +96,9 @@ class FeatureFlag(object):
     app.config.setdefault(FEATURE_FLAGS_CONFIG, {})
     app.config.setdefault(RAISE_ERROR_ON_MISSING_FEATURES, False)
 
-    if hasattr(app, "add_template_test"):
+    if hasattr(app, "add_template_global"):
       # flask 0.10 and higher has a proper hook
-      app.add_template_test(self.check, name=self.JINJA_TEST_NAME)
-    else:
-      app.jinja_env.tests[self.JINJA_TEST_NAME] = self.check
+      app.add_template_global(self.check, name=self.JINJA_TEST_NAME)
 
     if not hasattr(app, 'extensions'):
       app.extensions = {}
@@ -128,7 +129,7 @@ class FeatureFlag(object):
     for handler in self.handlers:
       try:
         if handler(feature):
-           return True
+          return True
       except StopCheckingFeatureFlags:
         return False
       except NoFeatureFlagFound:
