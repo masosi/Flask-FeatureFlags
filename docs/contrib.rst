@@ -15,7 +15,7 @@ You'll need Flask-SQLAlchemy::
 Then, in your app, add the ``SQLAlchemyFeatureFlags`` handler::
 
     from flask import Flask
-    from flask.ext.sqlalchemy import SQLAlchemy
+    from flask_sqlalchemy import SQLAlchemy
     import flask_featureflags as feature_flags
     from flask_featureflags.contrib.sqlalchemy import SQLAlchemyFeatureFlags
 

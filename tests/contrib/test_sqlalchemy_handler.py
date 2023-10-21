@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 import unittest
 
-from flask.ext.sqlalchemy import SQLAlchemy
+from flask_sqlalchemy import SQLAlchemy
 
 import flask_featureflags as feature_flags
 from flask_featureflags.contrib.sqlalchemy import SQLAlchemyFeatureFlags
